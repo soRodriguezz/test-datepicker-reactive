@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
 
   public today = moment().format("yyyy-MM-DD");
   public fechaUF: string = this.today;
+
+  public valorUF: number = 0;
   // public fechasSeleccionables: Array<moment.Moment> = [];
   
   public fechaMin = moment().subtract(1, 'd').format('YYYY-MM-DD');
@@ -45,6 +47,7 @@ export class AppComponent implements OnInit {
     this.formulario.controls.date.valueChanges.subscribe(value => {
       this.fechaUF = this.formatearFecha(value);
       // this.formatearFecha(this.fechaUF);
+      this.valorUF = 300.32;
       console.log(this.fechaUF);
     });
   }
