@@ -10,20 +10,17 @@ import * as moment from 'moment';
 export class AppComponent implements OnInit {
   title = 'test-datepicker';
 
-
   public fechas: any[] = ['2021-10-04', '2021-10-05', '2021-10-06', '2021-10-07'];
 
   public today = moment().format("yyyy-MM-DD");
   public fechaUF: string = this.today;
-  public fechasSeleccionables: Array<moment.Moment> = [];
+  // public fechasSeleccionables: Array<moment.Moment> = [];
   
   public fechaMin = moment().subtract(1, 'd').format('YYYY-MM-DD');
   public fechaMax = moment().add(15, 'd').format('YYYY-MM-DD');
   
   // public mes = moment().format("MM");
   // public ano = moment().format("yyyy");
-
-  
 
   public formulario: FormGroup = this._fb.group({
     date: [this.today, [Validators.required]],
@@ -35,6 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.fechaUFSeleccionada();
     this.fechaUFSeleccionada();
     console.log(this.formulario);
     // this.formulario.disabled = true;
@@ -43,17 +41,14 @@ export class AppComponent implements OnInit {
     // console.log(this.fechasSeleccionables);
   }
   
-  fechaUFSeleccionada(): void {
+  fechaUFSeleccionada() {
     this.formulario.controls.date.valueChanges.subscribe(value => {
-      this.fechaUF = value;
+      this.fechaUF = this.formatearFecha(value);
+      // this.formatearFecha(this.fechaUF);
+      console.log(this.fechaUF);
     });
   }
-
-  // moment().format("DD-MM-yyyy")
-  cambioUF(fecha: string) {
-    // console.log(this.formulario.value);
-  }
-
+  
   guardar() {
     if(this.formulario.invalid) {
       return;
@@ -67,6 +62,8 @@ export class AppComponent implements OnInit {
     let fechaParser = moment(fecha).format("DD-MM-YYYY"); 
     return fechaParser;
   }
+
+  
 
 }
 

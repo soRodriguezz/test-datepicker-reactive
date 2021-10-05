@@ -1,19 +1,225 @@
+<div class="container mt-3">
+  <div class="row mb-5">
+    <h1>Calculadora</h1>
+  </div>
 
-<div class="container">
-  
-  <form [formGroup]="formulario" (ngSubmit)="guardar()">
-    
-    <br>
-    <div class="row">
-      
-      <div class="col">
-        <input class="form-control"  formControlName="date" [min]="fechaMin" [max]="fechaMax" onkeydown="return false" type="date" />
+  <form>
+    <div class="form-group row">
+      <div class="col-3">
+        <label class="col-form-label" for="fechaUF">Fecha de Contrato:</label>
+      </div>
+      <div class="col-3">
+        <input
+          type="date"
+          class="form-control"
+          onkeydown="return false"
+          id="fechaUF"
+        />
       </div>
 
+      <div class="col-1"></div>
+
+      <div class="col-2">
+        <label class="col-form-label" for="">U.F.:</label>
+      </div>
+
+      <div class="col-3">
+        <input class="form-control" [readonly]="true" type="text" />
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <div class="col-3">
+        <label class="col-form-label" for="">Primer Vencimiento:</label>
+      </div>
+
+      <div class="col-3 form-group">
+        <select class="form-control">
+          <option value="" selected disabled>Seleccione...</option>
+          <option value="{{ fecha }}" *ngFor="let fecha of fechas">
+            {{ fecha }}
+          </option>
+        </select>
+      </div>
+      <div class="col"></div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <div class="col-3">
+        <label class="col-form-label" for="">RUT Cotizador:</label>
+      </div>
+
+      <div class="col-3 form-group">
+        <input type="text" class="form-control" id="" />
+      </div>
+
+      <div class="col-1"></div>
+
+      <div class="col-2">
+        <label class="col col-form-label" for="">Nombre:</label>
+      </div>
+      <div class="col-3">
+        <input type="text" class="form-control" id="" />
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <div class="col-3">
+        <label class="col-form-label" for="">Primer Vencimiento:</label>
+      </div>
+
+      <div class="col-3 form-group">
+        <select class="form-control">
+          <option value="" selected disabled>Seleccione...</option>
+          <option value="parque">parque</option>
+        </select>
+      </div>
+
+      <div class="col-1"></div>
+
+      <div class="col-2">
+        <label class="col col-form-label" for="">Tasa de Interés:</label>
+      </div>
+      <div class="col-3">
+        <input type="text" class="form-control" id="" />
+      </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <div class="col-3">
+        <label class="col-form-label" for=""
+          >Valor de la Sepultura (U.F.):</label
+        >
+      </div>
+
+      <div class="col-3 form-group">
+        <input type="text" class="form-control" id="" />
+      </div>
+
+      <div class="col"></div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <div class="col-3">
+        <label class="col-form-label" for="">Pie $:</label>
+      </div>
+
+      <div class="col-3 form-group">
+        <input type="text" class="form-control" id="" />
+      </div>
+
+      <div class="col"></div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <div class="col-3">
+        <label class="col-form-label" for="">Cuotas:</label>
+      </div>
+
+      <div class="col-3 form-group">
+        <input type="text" class="form-control" id="" />
+      </div>
+
+      <div class="col"></div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <div class="col-3">
+        <label class="col-form-label" for="">Tipo Crédito:</label>
+      </div>
+
+      <div class="col-3">
+        <select class="form-control">
+          <option value="" selected disabled>Seleccione...</option>
+          <option value="credito">credito</option>
+        </select>
+      </div>
+
+      <div class="col"></div>
+    </div>
+
+    <div class="form-group row mt-5">
+      <div class="col-4"></div>
+      <div class="col-2">
+        <button type="submit" class="btn btn-success float-end">Calcular</button>
+      </div>
+      <div class="col-2">
+        <button type="button" class="btn btn-outline-secondary">Imprimir</button>
+      </div>
+      
+      <div class="col-4"></div>
+    </div>
+  </form>
+
+  <table class="table table-bordered mt-4">
+    <thead>
+      <tr>
+        <th class="text-center" scope="col"></th>
+        <th class="text-center col-2" scope="col">U.F.</th>
+        <th class="text-center col-2" scope="col">$</th>
+        <th class="text-center" scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Pie:</th>
+        <td class="text-center">100</td>
+        <td class="text-center">3,009,238</td>
+        <td class="text-center"></td>
+      </tr>
+      <tr>
+        <th scope="row">Saldo:</th>
+        <td class="text-center">3.32</td>
+        <td class="text-center">100,000</td>
+        <td class="text-center"></td>
+      </tr>
+      <tr>
+        <th scope="row">Tasa de Interés:</th>
+        <td colspan="2" class="text-center">2%</td>
+        <td class="text-center"></td>
+      </tr>
+      <tr>
+        <th scope="row">Cuotas:</th>
+        <td colspan="2" class="text-center">18</td>
+        <td class="text-center"></td>
+      </tr>
+      <tr>
+        <th scope="row">Valor Cuota:</th>
+        <td class="text-center"></td>
+        <td class="text-center">248,874</td>
+        <td class="text-center"></td>
+      </tr>
+      <tr>
+        <th scope="row">Valor Pagaré 1, Desde 2021-11-04 hasta 2023-04-04:</th>
+        <td class="text-center"></td>
+        <td class="text-center">248,874</td>
+        <td class="text-center">Cuotas 18</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <br />
+  <h4>form value:</h4>
+  <pre>{{ formulario.value | json }}</pre>
+  <br />
+  <h4>value date:</h4>
+  <pre>{{ formulario.value.date | date: "dd-MM-yyyy" }}</pre>
+  <br />
+  <h4>valid:</h4>
+  <pre>{{ formulario.valid }}</pre>
+</div>
+
+<!-- <div class="container mt-3">
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    
+    <div class="row">
+      <div class="col">
+        <input class="form-control"  formControlName="date" [min]="fechaMin" [max]="fechaMax" (change)="fechaUFSeleccionada()" onkeydown="return false"  type="date" />
+      </div>
       <div class="col">
         <input class="form-control"  formControlName="uf" [readonly]="true" type="text" />
       </div>
-
     </div>
 
     <div class="row">
@@ -28,18 +234,12 @@
     <div class="row mt-3">
       <button type="submit" class="btn btn-primary">GUARDAR</button>
     </div>
-
     <br>
+    (change)="cambioUF($event.target.value)"
     
-    <br>
-    <!-- (change)="cambioUF($event.target.value)" -->
-    
-    <!-- {{formulario.value.date | date: 'dd-MM-yyyy' }} -->
+    {{formulario.value.date | date: 'dd-MM-yyyy' }}
     {{formulario.value | json }}
-
   </form>
-
-</div>
-
+</div> -->
 
 <!-- [readonly]="true"  -->
