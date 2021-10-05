@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import * as moment from 'moment';
 })
 export class AppComponent implements OnInit {
   title = 'test-datepicker';
+
+  public subs: Subscription[] = [];
 
   public fechas: any[] = ['2021-10-04', '2021-10-05', '2021-10-06', '2021-10-07'];
 
@@ -35,7 +38,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // this.fechaUFSeleccionada();
-    this.fechaUFSeleccionada();
     console.log(this.formulario);
     // this.formulario.disabled = true;
     // console.log(this.formulario.controls.date.value);
@@ -44,12 +46,20 @@ export class AppComponent implements OnInit {
   }
   
   fechaUFSeleccionada() {
-    this.formulario.controls.date.valueChanges.subscribe(value => {
-      this.fechaUF = this.formatearFecha(value);
-      // this.formatearFecha(this.fechaUF);
-      this.valorUF = 300.32;
-      console.log(this.fechaUF);
-    });
+    // this.subs.push(
+    //   this.formulario.controls.date.value.subscribe(value => {
+    //     this.fechaUF = this.formatearFecha(value);
+    //     // this.formatearFecha(this.fechaUF);
+    //     this.valorUF = 300.32;
+    //     console.log("fecha: " + value);
+    //     // return console.log(this.fechaUF)
+    //   })
+    // )
+
+    this.fechaUF = this.formatearFecha(this.formulario.controls.date.value);
+    this.valorUF = 300.32;
+    console.log(this.fechaUF);
+    
   }
   
   guardar() {
@@ -57,16 +67,23 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    console.log( this.formatearFecha(this.fechaUF) );
-    this.formulario.reset();
+    console.log( this.fechaUF );
+    // this.limpiarFormulario();
   }
 
-  formatearFecha (fecha:string) {
+  formatearFecha( fecha:string ) {
     let fechaParser = moment(fecha).format("DD-MM-YYYY"); 
+    console.log("formateo fecha:" + fechaParser);
     return fechaParser;
   }
 
-  
+  limpiarFormulario() {
+    this.formulario.reset();
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach((subscripcion) => subscripcion.unsubscribe());
+  }
 
 }
 
