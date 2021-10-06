@@ -1,4 +1,5 @@
 <div class="container mt-3">
+  <div class="card p-5">
   <div class="row mb-5">
     <h1>Calculadora</h1>
   </div>
@@ -12,14 +13,14 @@
         <input
           type="date"
           class="form-control"
-          onkeydown="return false"
           id="fechaUF"
-          formControlName="date"
+          formControlName="fechaContrato"
           [min]="fechaMin"
           [max]="fechaMax"
-          (change)="fechaUFSeleccionada()" 
+          (blur)="fechaUFSeleccionada()"
         />
       </div>
+      <!-- onkeydown="return false" -->
 
       <div class="col-1"></div>
 
@@ -50,33 +51,13 @@
 
     <div class="form-group row mt-2">
       <div class="col-3">
-        <label class="col-form-label" for="">RUT Cotizador:</label>
+        <label class="col-form-label" for=""
+          >Valor de la Sepultura (U.F.):</label
+        >
       </div>
 
       <div class="col-3 form-group">
         <input type="text" class="form-control" id="" />
-      </div>
-
-      <div class="col-1"></div>
-
-      <div class="col-2">
-        <label class="col col-form-label" for="">Nombre:</label>
-      </div>
-      <div class="col-3">
-        <input type="text" class="form-control" id="" />
-      </div>
-    </div>
-
-    <div class="form-group row mt-2">
-      <div class="col-3">
-        <label class="col-form-label" for="">Parque:</label>
-      </div>
-
-      <div class="col-3 form-group">
-        <select class="form-control">
-          <option value="" selected disabled>Seleccione...</option>
-          <option value="parque">parque</option>
-        </select>
       </div>
 
       <div class="col-1"></div>
@@ -87,20 +68,6 @@
       <div class="col-3">
         <input type="text" class="form-control" id="" />
       </div>
-    </div>
-
-    <div class="form-group row mt-2">
-      <div class="col-3">
-        <label class="col-form-label" for=""
-          >Valor de la Sepultura (U.F.):</label
-        >
-      </div>
-
-      <div class="col-3 form-group">
-        <input type="text" class="form-control" id="" />
-      </div>
-
-      <div class="col"></div>
     </div>
 
     <div class="form-group row mt-2">
@@ -144,16 +111,13 @@
 
     <div class="form-group row mt-5">
       <div class="col-4"></div>
-      <div class="col-2">
-        <button type="button" (click)="guardar()" class="btn btn-success float-end"><i class="fas fa-print"></i>Calcular</button>
+      <div class="col-4 text-center">
+        <button type="button" [disabled]="formulario.invalid" (click)="guardar()" class="btn btn-success"><i class="fas fa-print"></i>Calcular</button>
       </div>
-      <div class="col-2">
-        <button type="button" class="btn btn-outline-secondary">Imprimir</button>
-      </div>
-      
       <div class="col-4"></div>
     </div>
   </form>
+</div>
 
   <table class="table table-bordered mt-4">
     <thead>
@@ -202,6 +166,8 @@
     </tbody>
   </table>
 
+  <!-- (keyup.enter)="buscar()" -->
+
   <hr>
   <br />
   <h4>form value:</h4>
@@ -212,8 +178,6 @@
   <br />
   <h4>valid:</h4>
   <pre>{{ formulario.valid }}</pre>
-  <br>
-  <pre>{{ formulario.controls.date.valueChanges}}</pre>
 </div>
 
 <!-- <div class="container mt-3">

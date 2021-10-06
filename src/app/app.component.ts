@@ -23,18 +23,20 @@ export class AppComponent implements OnInit {
   
   public fechaMin = moment().subtract(1, 'd').format('YYYY-MM-DD');
   public fechaMax = moment().add(15, 'd').format('YYYY-MM-DD');
+
+  public timeout: any;
   
   // public mes = moment().format("MM");
   // public ano = moment().format("yyyy");
 
   public formulario: FormGroup = this._fb.group({
-    date: [this.today, [Validators.required]],
+    fechaContrato: [, [Validators.required]],
     uf: []
   });
+  // this.today
   
   // 
-  constructor(private _fb: FormBuilder) {
-  }
+  constructor(private _fb: FormBuilder) {}
 
   ngOnInit() {
     // this.fechaUFSeleccionada();
@@ -55,10 +57,13 @@ export class AppComponent implements OnInit {
     //     // return console.log(this.fechaUF)
     //   })
     // )
-
-    this.fechaUF = this.formatearFecha(this.formulario.controls.date.value);
-    this.valorUF = 300.32;
-    console.log(this.fechaUF);
+    this.fechaUF = this.formatearFecha(this.formulario.controls.fechaContrato.value);
+    
+    if(this.fechaUF != 'Invalid date') {
+      this.valorUF = 300.32;
+      console.log(this.fechaUF);
+    }
+    
     
   }
   
@@ -68,12 +73,11 @@ export class AppComponent implements OnInit {
     }
 
     console.log( this.fechaUF );
-    // this.limpiarFormulario();
+    this.limpiarFormulario();
   }
 
   formatearFecha( fecha:string ) {
-    let fechaParser = moment(fecha).format("DD-MM-YYYY"); 
-    console.log("formateo fecha:" + fechaParser);
+    let fechaParser = moment(fecha).format("DD-MM-YYYY");
     return fechaParser;
   }
 
