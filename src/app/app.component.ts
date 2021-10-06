@@ -24,14 +24,12 @@ export class AppComponent implements OnInit {
   public fechaMin = moment().subtract(1, 'd').format('YYYY-MM-DD');
   public fechaMax = moment().add(15, 'd').format('YYYY-MM-DD');
 
-  public timeout: any;
-  
   // public mes = moment().format("MM");
   // public ano = moment().format("yyyy");
 
   public formulario: FormGroup = this._fb.group({
     fechaContrato: [, [Validators.required]],
-    uf: []
+    uf: [, [Validators.required]]
   });
   // this.today
   
