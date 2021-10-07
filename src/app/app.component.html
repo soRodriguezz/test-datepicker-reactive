@@ -17,11 +17,12 @@
           formControlName="fechaContrato"
           [min]="fechaMin"
           [max]="fechaMax"
-          (blur)="fechaUFSeleccionada()"
+          onkeydown="return false" 
+          (change)="fechaUFSeleccionada()"
         />
       </div>
       <!-- onkeydown="return false" -->
-
+      <!-- (blur) -->
       <div class="col-1"></div>
 
       <div class="col-2">
@@ -66,7 +67,7 @@
         <label class="col col-form-label" for="">Tasa de Interés:</label>
       </div>
       <div class="col-3">
-        <input type="text" class="form-control" id="" />
+        <input type="text" [readonly]="true" class="form-control" id="" />
       </div>
     </div>
 
